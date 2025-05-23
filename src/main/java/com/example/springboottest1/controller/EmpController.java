@@ -38,6 +38,7 @@ public class EmpController {
     @GetMapping("/getEmpBySal")
     List<Emp> getEmpBySal (double sal) {
         return empService.getEmpBySal(sal);
+
     }
 //    String getEmpBySal (double sal) {
 //        return empService.getEmpBySal(sal).toString();
