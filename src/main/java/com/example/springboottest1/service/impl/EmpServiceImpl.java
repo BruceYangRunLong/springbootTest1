@@ -1,6 +1,7 @@
 package com.example.springboottest1.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.springboottest1.entity.Emp;
 import com.example.springboottest1.mapper.EmpMapper;
 import com.example.springboottest1.service.IEmpService;
@@ -37,6 +38,21 @@ public class EmpServiceImpl extends ServiceImpl<EmpMapper, Emp> implements IEmpS
         QueryWrapper<Emp> queryWrapper = new QueryWrapper<>();
         queryWrapper.gt("sal", sal);
         return empMapper.selectList(queryWrapper);
+    }
+
+    //select * from EMP where ename like '%T%'
+    public List<Emp> getEmpByEname (String ename) {
+        QueryWrapper<Emp> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("ename", ename);
+        return empMapper.selectList(queryWrapper);
+    }
+
+    //update emp set sal = sal*1.2 where deptno = 10
+    public int updateEmpSalByDeptno (int deptno,double alpha) {
+        UpdateWrapper<Emp> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("deptno", deptno);
+        updateWrapper.setSql("sal = sal * " + alpha);
+        return empMapper.update(updateWrapper);
     }
 
 }

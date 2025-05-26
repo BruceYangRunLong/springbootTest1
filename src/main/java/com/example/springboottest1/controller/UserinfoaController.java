@@ -17,6 +17,10 @@ import org.springframework.stereotype.Controller;
  * @author Bruce
  * @since 2025-05-20
  */
+
+@CrossOrigin
+//Spring框架 中用于 处理跨域请求 的注解。它的作用是允许不同域名、协议或端口的客户端访问后端 API
+
 @RestController
 //@RequestMapping("/userinfoa")
 //public class UserinfoaController {

@@ -17,4 +17,7 @@ public interface IEmpService extends IService<Emp> {
 
     public List<Emp> getEmpByJob (String job) ;
     public List<Emp> getEmpBySal (double sal) ;
+    public List<Emp> getEmpByEname (String ename) ;
+    public int updateEmpSalByDeptno (int deptno,double alpha) ;
+
 }
