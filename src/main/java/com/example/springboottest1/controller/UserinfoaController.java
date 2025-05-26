@@ -84,7 +84,6 @@ public class UserinfoaController {
     }
 
 
-
     @GetMapping("sayHi")
     public String sayHello(String name) {
         return "Hello " + name;
