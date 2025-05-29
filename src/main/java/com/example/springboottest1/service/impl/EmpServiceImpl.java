@@ -2,6 +2,8 @@ package com.example.springboottest1.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.springboottest1.entity.Emp;
 import com.example.springboottest1.mapper.EmpMapper;
 import com.example.springboottest1.service.IEmpService;
@@ -53,6 +55,23 @@ public class EmpServiceImpl extends ServiceImpl<EmpMapper, Emp> implements IEmpS
         updateWrapper.eq("deptno", deptno);
         updateWrapper.setSql("sal = sal * " + alpha);
         return empMapper.update(updateWrapper);
+    }
+
+    @Override
+    public IPage<Emp> getAllEmpsByPageCondition(int pageNum, int pageSize) {
+        System.out.println("pageNum:"+pageNum+"    ,pageSize"+pageSize);
+        Page<Emp> page = new Page<>(pageNum, pageSize);
+
+
+        //pageCurrentNum = m pageSize = n
+        // select * from EMP limit (m-1)*n, n
+        IPage<Emp> result = empMapper.selectPage(page, null);
+
+
+
+        return result;
+
+
     }
 
 }

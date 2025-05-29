@@ -1,5 +1,6 @@
 package com.example.springboottest1.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.springboottest1.entity.Emp;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -19,5 +20,7 @@ public interface IEmpService extends IService<Emp> {
     public List<Emp> getEmpBySal (double sal) ;
     public List<Emp> getEmpByEname (String ename) ;
     public int updateEmpSalByDeptno (int deptno,double alpha) ;
+    public IPage<Emp> getAllEmpsByPageCondition(int pageNum, int pageSize) ;
+
 
 }

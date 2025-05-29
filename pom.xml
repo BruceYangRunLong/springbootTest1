@@ -83,6 +83,11 @@
             <artifactId>mybatis-plus-generator</artifactId>
             <version>3.5.12</version>
         </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-jsqlparser</artifactId>
+            <version>3.5.12</version>
+        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
