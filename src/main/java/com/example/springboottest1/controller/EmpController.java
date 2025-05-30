@@ -2,6 +2,7 @@ package com.example.springboottest1.controller;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.springboottest1.entity.Emp;
@@ -32,6 +33,10 @@ public class EmpController {
 
 
 
+
+
+
+
     @GetMapping("/getEmpBYEmpno")
     public Emp getEmpBYEmpno(int empno) {
         QueryWrapper<Emp> queryWrapper = new QueryWrapper<>();
@@ -46,14 +51,31 @@ public class EmpController {
     public boolean updateEmpByEmpno(@RequestBody Emp emp) {
         System.out.println(emp.toString());
 
+        UpdateWrapper updateWrapper = new UpdateWrapper();
+        updateWrapper.eq("empno", emp.getEmpno());
+        updateWrapper.set("ename", emp.getEname());
+        updateWrapper.set("job", emp.getJob());
+        updateWrapper.set("mgr", emp.getMgr());
+        updateWrapper.set("hiredate", emp.getHiredate());
+        updateWrapper.set("sal", emp.getSal());
+        updateWrapper.set("comm", emp.getComm());
+        updateWrapper.set("deptno", emp.getDeptno());
 
-        boolean ok = empService.update(emp, new QueryWrapper<Emp>());
+
+        boolean ok = empService.update(updateWrapper);
 
         return ok;
     }
 
 
 
+    @GetMapping("/deleteEmpByEmpno")
+    public boolean deleteEmpByEmpno(int empno) {
+        QueryWrapper<Emp> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("empno", empno);
+        boolean ok = empService.remove(queryWrapper);
+        return ok;
+    }
 
 
     @GetMapping("/getAllEmpsByPageCondition")
